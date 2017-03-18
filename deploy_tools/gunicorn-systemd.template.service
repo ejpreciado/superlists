@@ -1,0 +1,13 @@
+[Unit]
+Description=Gunicorn service for SITENAME
+
+[Service]
+Restart=on-failure
+User=eddo
+WorkingDirectory=/home/eddo/sites/SITENAME/source
+ExecStart=/home/eddo/sites/SITENAME/virtualenv/bin/gunicorn \
+  superlists.wsgi:application \
+  --bind=unix:/tmp/SITENAME.socket
+
+[Install]
+WantedBy=multi-user.target
